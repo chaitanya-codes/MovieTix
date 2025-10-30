@@ -4,18 +4,7 @@ A simple movie ticket booking system built with Node.js, Express, MySQL, and van
 
 ## Quick Setup
 
-### Option 1: Automatic Setup (Recommended)
-```bash
-npm run setup
-```
-
-This will automatically:
-- Install all dependencies
-- Create the database and tables
-- Insert sample data
-- Start the server
-
-### Option 2: Manual Setup
+### Manual Setup
 ```bash
 # Install dependencies
 npm install
