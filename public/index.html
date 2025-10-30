@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-film"></i>
+                <span>MovieTix</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#movies" class="nav-link">Movies</a>
+                <a href="#theaters" class="nav-link">Theaters</a>
+                <a href="#shows" class="nav-link">Shows</a>
+                <a href="#bookings" class="nav-link">My Bookings</a>
+                <div class="nav-auth" id="navAuth">
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="registerBtn">Register</button>
+                </div>
+                <div class="nav-user" id="navUser" style="display: none;">
+                    <span id="userName"></span>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to MovieTix</h1>
+                    <p>Book your movie tickets online with ease. Choose from the latest movies and enjoy the best cinema experience.</p>
+                    <div class="search-box">
+                        <input type="text" id="movieSearch" placeholder="Search for movies...">
+                        <button class="btn btn-primary" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Movies -->
+            <div class="container">
+                <h2>Now Showing</h2>
+                <div class="movies-grid" id="featuredMovies">
+                </div>
+            </div>
+        </section>
+
+        <!-- Movies Section -->
+        <section id="movies" class="section">
+            <div class="container">
+                <h2>All Movies</h2>
+                <div class="filters">
+                    <select id="genreFilter">
+                        <option value="">All Genres</option>
+                        <option value="Action">Action</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Drama">Drama</option>
+                    </select>
+                    <select id="ratingFilter">
+                        <option value="">All Ratings</option>
+                        <option value="8">8+ Rating</option>
+                        <option value="7">7+ Rating</option>
+                        <option value="6">6+ Rating</option>
+                    </select>
+                    <button class="btn btn-outline" id="clearFiltersBtn">Clear Filters</button>
+                </div>
+                <div class="movies-grid" id="allMovies">
+                </div>
+            </div>
+        </section>
+
+        <!-- Theaters Section -->
+        <section id="theaters" class="section">
+            <div class="container">
+                <h2>Our Theaters</h2>
+                <div class="theaters-grid" id="theatersList">
+                </div>
+            </div>
+        </section>
+
+        <!-- Shows Section -->
+        <section id="shows" class="section">
+            <div class="container">
+                <h2>Available Shows</h2>
+                <div class="shows-filters">
+                    <select id="dateFilter" class="form-control">
+                        <option value="">All Dates</option>
+                        <option value="" id="todayOption">Today</option>
+                        <option value="" id="tomorrowOption">Tomorrow</option>
+                        <option value="" id="dayAfterOption">Day After</option>
+                    </select>
+                    <select id="theaterFilter" class="form-control">
+                        <option value="">All Theaters</option>
+                    </select>
+                </div>
+                <div class="shows-list" id="showsList">
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section id="bookings" class="section">
+            <div class="container">
+                <h2>My Bookings</h2>
+                <div class="bookings-list" id="bookingsList">
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Details Modal -->
+        <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="movie-details" id="movieDetails">
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Modal -->
+        <div id="bookingModal" class="modal">
+            <div class="modal-content booking-modal">
+                <span class="close">&times;</span>
+                <div class="booking-content" id="bookingContent">
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content auth-modal">
+                <span class="close">&times;</span>
+                <div class="auth-form">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" id="loginUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content auth-modal">
+                <span class="close">&times;</span>
+                <div class="auth-form">
+                    <h2>Register</h2>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="regUsername">Username</label>
+                            <input type="text" id="regUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">Email</label>
+                            <input type="email" id="regEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" id="regFirstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" id="regLastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPhone">Phone</label>
+                            <input type="tel" id="regPhone" name="phone">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
