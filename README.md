@@ -1,6 +1,6 @@
 # Movie Ticket Booking System
 
-A simple movie ticket booking system built with Node.js, Express, MySQL, and vanilla JavaScript for a DBMS assignment.
+A simple movie ticket booking system built with Node.js, Express, MySQL, and JavaScript for a DBMS assignment.
 
 ## Quick Setup
 
